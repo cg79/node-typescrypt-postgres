@@ -1,15 +1,18 @@
-import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
+import * as http from 'http';
 
-dotenv.config();
+import App from './app';
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = normalizePort(process.env.PORT || 3000);
+App.set('port', port);
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+const server = http.createServer(App);
+server.listen(port);
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+console.log("Server on port: " + port);
+
+function normalizePort(val: number|string): number|string|boolean {
+  let port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
+  if (isNaN(port)) return val;
+  else if (port >= 0) return port;
+  else return false;
+}
