@@ -40,5 +40,14 @@ services:
     ports:
       - 3000:3000
 
+  # deel-task:
+  #   container_name: deel-container
+  #   build: 
+  #     context: deel-task
+  #     dockerfile: DockerFile
+  #   restart: always
+  #   ports:
+  #     - 3000:3000    
+
 volumes: 
   db:
