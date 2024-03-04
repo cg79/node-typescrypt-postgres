@@ -40,9 +40,9 @@ class ApiRouter {
   test(_req: Request, res: Response, _next: NextFunction) {
     console.log("test function");
     debugger;
-    throw new APIError("sss", 302);
-    res.status(200).json({ a: 2 });
-    // return { a: 1 };
+    // throw new APIError("sss", 302);
+    // res.status(200).json({ a: 2 });
+    return { a: 1 };
   }
 }
 
