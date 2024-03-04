@@ -32,22 +32,23 @@ services:
   #   stdin_open: true
   #   tty: true
 
-  api:
-    build: 
-      context: api
-      dockerfile: DockerFile
-    restart: always
-    ports:
-      - 3000:3000
-
-  # deel-task:
-  #   container_name: deel-container
+  # api:
+  #   container_name: api-container
   #   build: 
-  #     context: deel-task
+  #     context: api
   #     dockerfile: DockerFile
   #   restart: always
   #   ports:
-  #     - 3000:3000    
+  #     - 3000:3000
+
+  deel-task:
+    container_name: deel-container
+    build: 
+      context: deel-task
+      dockerfile: DockerFile
+    restart: always
+    ports:
+      - 3000:3000    
 
 volumes: 
   db:

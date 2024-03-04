@@ -1,7 +1,9 @@
 FROM node
-WORKDIR /usr/src/app
+WORKDIR /usr/src/deel-task
+
 COPY ./package*.json ./
-# COPY ./tsconfig.json ./tsconfig.json
+COPY ./tsconfig.json ./tsconfig.json
+RUN ls
 COPY ./src/ ./src/
 RUN npm install -g typescript && npm install
 RUN npm install -g ts-node
