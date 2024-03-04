@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+
+  postgresdb:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    env_file: ./.env
+    environment:
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
+    volumes:
+        - ./api/dbseed:/docker-entrypoint-initdb.d
+
+  # app:
+  #   depends_on:
+  #     - postgresdb
+  #   build: ./deel-task
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   ports:
+  #     - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+  #   environment:
+  #     - DB_HOST=mysqldb
+  #     - DB_USER=$MYSQLDB_USER
+  #     - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+  #     - DB_NAME=$MYSQLDB_DATABASE
+  #     - DB_PORT=$MYSQLDB_DOCKER_PORT
+  #   stdin_open: true
+  #   tty: true
+
+  api:
+    build: 
+      context: api
+      dockerfile: DockerFile
+    restart: always
+    ports:
+      - 3000:3000
+
+volumes: 
+  db:
