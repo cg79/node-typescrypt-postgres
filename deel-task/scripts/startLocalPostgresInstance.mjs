@@ -12,6 +12,7 @@ async function run() {
       -e POSTGRES_USER=claudiu \
       -e POSTGRES_PASSWORD=password \
       -e POSTGRES_DB=postgresDB \
+      -v pgdata:/var/lib/postgresql/data \
       -d \
       postgres \ `;
     await runCommand(cmd, "Starting local postgres instance...");
