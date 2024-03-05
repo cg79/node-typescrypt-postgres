@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run stopLocalPostgressInsntance && npm run startLocalPostgresInstance && nodemon --exec ts-node src/server.ts",
+    "start": "nodemon --exec ts-node src/server.ts",
+    "dev": "npm run stopLocalPostgressInsntance && npm run startLocalPostgresInstance && nodemon --exec ts-node src/server.ts",
     "debug": "npm run build && node --inspect dist/server.js",
     "build": "npx tsc",
     "serve": "node dist/server.js",
     "startLocalPostgresInstance": "node scripts/startLocalPostgresInstance.mjs",
     "stopLocalPostgressInsntance": "node scripts/stopLocalPostgresInstance.mjs",
-    "seed": "ts-node scripts/seedLocalPostgressInstance.ts"
+    "seed0": "ts-node scripts/seedLocalPostgressInstance.ts",
+    "seed": "ts-node src/database/seed/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.22",
     "@types/pg": "^8.11.2",
+    "@types/sequelize": "^4.28.20",
     "express": "^4.18.2",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
@@ -34,6 +37,7 @@
     "ora": "^8.0.1",
     "pg": "^8.11.3",
     "sequelize": "^6.37.1",
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "uuidv4": "^6.2.13"
   }
 }
