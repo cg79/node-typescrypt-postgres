@@ -1,9 +1,8 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { asyncMiddleware, loggerMiddleware } from "../security/middleware";
 import { validateCookies } from "../security/cookie-validator";
-import DbService from "../database/DbService";
 import { uuid } from "uuidv4";
-import { UserRepository } from "../database/repositories/user-repository";
+import { UserService } from "../services/UserService";
 
 class ApiRouter {
   router: Router;
@@ -26,40 +25,31 @@ class ApiRouter {
         }
       )
     );
-    this.router.get("/emp", this.addCall);
-    this.router.get("/create", this.createUser1);
+    this.router.post("/create", this.createUser);
   }
 
-  addCall(req: Request, res: Response, next: NextFunction) {
-    DbService.getPool().query("SELECT * FROM employees", (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(200).json(results.rows);
-    });
-  }
-  test(_req: Request, res: Response, _next: NextFunction) {
-    console.log("test function");
-    debugger;
-    // throw new APIError("sss", 302);
-    // res.status(200).json({ a: 2 });
-    return { a: 1 };
-  }
-
-  async createUser1(_req: Request, res: Response, _next: NextFunction) {
+  async createUser(req: Request, res: Response, next: NextFunction) {
+    console.log(req.body);
     console.log("createUser function");
     debugger;
 
-    const response = await new UserRepository().createUser({
-      id: uuid(),
-      name: "test",
-      age: 2,
-      contractor: "admin",
-    });
-    // throw new APIError("sss", 302);
-    // res.status(200).json({ a: 2 });
-    // return { a: response };
-    res.status(200).json(response);
+    try {
+      const response = await new UserService().create({
+        id: uuid(),
+        name: "test",
+        age: 2,
+        contractor: "admin",
+      });
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  test(_req: Request, res: Response, _next: NextFunction) {
+    console.log("test function");
+    debugger;
+    return { a: 1 };
   }
 }
 
