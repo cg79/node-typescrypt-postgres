@@ -8,7 +8,6 @@ class DbService {
   private sequelizeInstance: Sequelize;
 
   constructor() {
-    console.log("aaaWWWWWW", process.env.POSTGRES_USER);
     this.pool = new Pool({
       user: process.env.POSTGRES_USER,
       //host: "host.docker.internal", check why this instance is not working

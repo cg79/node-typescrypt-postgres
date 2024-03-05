@@ -28,13 +28,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const http = __importStar(require("http"));
 const app_1 = __importDefault(require("./app"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const port = normalizePort(process.env.PORT || 3000);
-app_1.default.set('port', port);
+app_1.default.set("port", port);
+console.log("aaaa", process.env.POSTGRES_USER);
 const server = http.createServer(app_1.default);
 server.listen(port);
 console.log("Server on port: " + port);
 function normalizePort(val) {
-    let port = (typeof val === 'string') ? parseInt(val, 10) : val;
+    let port = typeof val === "string" ? parseInt(val, 10) : val;
     if (isNaN(port))
         return val;
     else if (port >= 0)

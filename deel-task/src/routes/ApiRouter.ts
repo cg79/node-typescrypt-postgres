@@ -4,7 +4,7 @@ import { validateCookies } from "../security/cookie-validator";
 import { uuid } from "uuidv4";
 import { UserService } from "../services/UserService";
 
-class ApiRouter {
+export class ApiRouter {
   router: Router;
 
   constructor() {
@@ -34,12 +34,7 @@ class ApiRouter {
     debugger;
 
     try {
-      const response = await new UserService().create({
-        id: uuid(),
-        name: "test",
-        age: 2,
-        contractor: "admin",
-      });
+      const response = await new UserService().create(req.body);
       res.status(200).json(response);
     } catch (error) {
       next(error);
