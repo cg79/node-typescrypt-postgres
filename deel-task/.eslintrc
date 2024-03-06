@@ -1,0 +1,7 @@
+//reference: https://gist.github.com/silver-xu/1dcceaa14c4f0253d9637d4811948437
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
+  "rules": {}
+}

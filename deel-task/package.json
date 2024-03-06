@@ -12,7 +12,9 @@
     "startLocalPostgresInstance": "node scripts/startLocalPostgresInstance.mjs",
     "stopLocalPostgressInsntance": "node scripts/stopLocalPostgresInstance.mjs",
     "seed0": "ts-node scripts/seedLocalPostgressInstance.ts",
-    "seed": "ts-node src/database/seed/seed.ts"
+    "seed": "ts-node src/database/seed/seed.ts",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint src/**/*.ts --fix"
   },
   "keywords": [],
   "author": "",
@@ -34,7 +36,10 @@
   "dependencies": {
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-typescript": "^7.23.3",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
     "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
     "fs": "^0.0.1-security",
     "ora": "^8.0.1",
     "pg": "^8.11.3",
