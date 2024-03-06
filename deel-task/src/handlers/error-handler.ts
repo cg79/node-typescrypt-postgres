@@ -13,7 +13,9 @@ export function errorHandler(
   let message = "Internal Server Error";
 
   // Check if the error is an instance of our custom APIError class
+  debugger;
   if (err instanceof APIError) {
+    console.log("here is a API error");
     statusCode = err.statusCode;
     message = err.message;
   }

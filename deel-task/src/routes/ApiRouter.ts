@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { loggerMiddleware } from "../security/middleware";
 import { validateCookies } from "../security/cookie-validator";
 import { UserService } from "../services/UserService";
+import { headerValidator } from "../security/HeaderValidator";
 
 export class ApiRouter {
   router: Router;
@@ -14,6 +15,7 @@ export class ApiRouter {
   init() {
     this.router.use(loggerMiddleware);
     this.router.use(validateCookies);
+    this.router.use(headerValidator);
 
     // this.router.get(
     //   "/test",

@@ -16,6 +16,8 @@ export const validateCookies = async (
   res: Response,
   next: NextFunction
 ) => {
+  // console.log(JSON.stringify(req.headers));
+
   try {
     await cookieValidator(
       req.cookies ? req.cookies[SECURITY.COOKIE] : undefined
