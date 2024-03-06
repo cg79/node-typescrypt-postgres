@@ -1,10 +1,7 @@
-import {
-  UserRepository,
-  UserRepositoryContract,
-} from "../repositories/user-repository";
+import { UserRepository } from '../repositories/user-repository';
 
 class RepositoryFactory {
-  getUserRepository = (): UserRepositoryContract => {
+  getUserRepository = (): UserRepository => {
     return new UserRepository();
   };
 }

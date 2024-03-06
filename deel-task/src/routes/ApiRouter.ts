@@ -1,8 +1,8 @@
-import { Router, Request, Response, NextFunction } from "express";
-import { loggerMiddleware } from "../security/middleware";
-import { validateCookies } from "../security/cookie-validator";
-import { UserService } from "../services/UserService";
-import { headerValidator } from "../security/HeaderValidator";
+import { Router, Request, Response, NextFunction } from 'express';
+import { loggerMiddleware } from '../security/middleware';
+import { validateCookies } from '../security/cookie-validator';
+import { UserService } from '../services/UserService';
+import { headerValidator } from '../security/HeaderValidator';
 
 export class ApiRouter {
   router: Router;
@@ -26,27 +26,36 @@ export class ApiRouter {
     //     }
     //   )
     // );
-    this.router.post("/create", this.createUser);
+    this.router.post('/create', this.createUser);
+    this.router.post('/findbyid', this.findbyid);
   }
 
   async createUser(req: Request, res: Response, next: NextFunction) {
-    console.log(req.body);
-    console.log("createUser function");
+    // console.log(req.body);
+    // console.log("createUser function");
     debugger;
 
     try {
       const response = await new UserService().create(req.body);
       res.status(200).json(response);
     } catch (error) {
-      console.log("error", error);
+      // console.log('error', error);
       next(error);
     }
   }
 
-  test(_req: Request, res: Response, _next: NextFunction) {
-    console.log("test function");
+  async findbyid(req: Request, res: Response, next: NextFunction) {
+    // console.log(req.body);
+    // console.log("createUser function");
     debugger;
-    return { a: 1 };
+
+    try {
+      const response = await new UserService().findById(req.body.id);
+      res.status(200).json(response);
+    } catch (error) {
+      // console.log('error', error);
+      next(error);
+    }
   }
 }
 

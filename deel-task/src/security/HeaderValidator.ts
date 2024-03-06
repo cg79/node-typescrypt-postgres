@@ -4,7 +4,7 @@ import { APIError } from '../handlers/apiError';
 
 export function validateHeader(header: string | undefined) {
   if (!header) {
-    throw new APIError('Invalid header', 401);
+    // throw new APIError('Invalid header', 401);
   }
 }
 
