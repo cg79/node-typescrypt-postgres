@@ -1,7 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { asyncMiddleware, loggerMiddleware } from "../security/middleware";
+import { loggerMiddleware } from "../security/middleware";
 import { validateCookies } from "../security/cookie-validator";
-import { uuid } from "uuidv4";
 import { UserService } from "../services/UserService";
 
 export class ApiRouter {
@@ -16,15 +15,15 @@ export class ApiRouter {
     this.router.use(loggerMiddleware);
     this.router.use(validateCookies);
 
-    this.router.get(
-      "/test",
-      asyncMiddleware(
-        async (req: Request, res: Response, next: NextFunction) => {
-          const response = await this.test(req, res, next);
-          res.send(response);
-        }
-      )
-    );
+    // this.router.get(
+    //   "/test",
+    //   asyncMiddleware(
+    //     async (req: Request, res: Response, next: NextFunction) => {
+    //       const response = await this.test(req, res, next);
+    //       res.send(response);
+    //     }
+    //   )
+    // );
     this.router.post("/create", this.createUser);
   }
 
@@ -37,6 +36,7 @@ export class ApiRouter {
       const response = await new UserService().create(req.body);
       res.status(200).json(response);
     } catch (error) {
+      console.log("error", error);
       next(error);
     }
   }

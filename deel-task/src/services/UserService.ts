@@ -1,8 +1,12 @@
+import RepositoryFactory from "../database/factory/RepositoryFactory";
 import { UserAttributes } from "../database/models/user";
-import { UserRepository } from "../database/repositories/user-repository";
 
 export class UserService {
+  // userRepository: UserRepositoryContract;
+  // constructor(repository: UserRepositoryContract) {
+  //   this.userRepository = repository;
+  // }
   async create(newUser: UserAttributes) {
-    return new UserRepository().createUser(newUser);
+    return RepositoryFactory.getUserRepository().createUser(newUser);
   }
 }

@@ -2,6 +2,7 @@ import request from "supertest";
 import express, { Router } from "express";
 import { ApiRouter } from "./ApiRouter"; // Import your router class
 import { uuid } from "uuidv4";
+import bodyParser from "body-parser";
 
 describe("ApiRouter", () => {
   let app: express.Express;
@@ -9,6 +10,7 @@ describe("ApiRouter", () => {
 
   beforeAll(() => {
     app = express();
+    app.use(bodyParser.json());
     router = new ApiRouter().router;
     app.use(router);
   });

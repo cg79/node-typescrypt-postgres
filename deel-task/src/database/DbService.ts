@@ -33,7 +33,6 @@ class DbService {
     return this.pool;
   }
   get sequelize(): Sequelize {
-    console.log("getting sequelize ", this.sequelizeInstance);
     return this.sequelizeInstance;
   }
 }
