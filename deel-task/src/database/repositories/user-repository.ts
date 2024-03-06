@@ -8,7 +8,7 @@ export class UserRepository implements UserRepositoryContract {
   async createUser(newUser: UserAttributes): Promise<User> {
     return await User.create(newUser);
   }
-  async findById(userId: string): Promise<User | null> {
-    return await User.findByPk(userId);
+  async findById(userId: string, options = {}): Promise<User | null> {
+    return await User.findByPk(userId, { ...options });
   }
 }
