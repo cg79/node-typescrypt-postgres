@@ -1,4 +1,4 @@
-import { runCommand } from "./runCommand.mjs";
+import { runCommand } from './runCommand.mjs';
 
 // reference: https://www.code4it.dev/blog/run-postgresql-with-docker/
 async function run() {
@@ -15,7 +15,7 @@ async function run() {
       -v pgdata:/var/lib/postgresql/data \
       -d \
       postgres \ `;
-    await runCommand(cmd, "Starting local postgres instance...");
+    await runCommand(cmd, 'Starting local postgres instance...');
   }
 }
 

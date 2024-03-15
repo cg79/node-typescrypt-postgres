@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  postgresdb:
+  postgresdbService:
     container_name: postgres-containers
     image: postgres
     restart: always
@@ -14,12 +14,12 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       POSTGRES_DB: $POSTGRES_DB
     volumes:
-        - ./deel-task/dbseed:/docker-entrypoint-initdb.d
+        - ./src/dbseed:/docker-entrypoint-initdb.d
 
   deel-task:
     container_name: deel-container
     build: 
-      context: deel-task
+      context: src
       dockerfile: DockerFile
     restart: always
     env_file: ./.env

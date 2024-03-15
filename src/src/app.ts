@@ -63,7 +63,7 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
     this.app.get('/', (req: Request, res: Response) => {
-      res.status(200).send('Welcome !');
+      res.status(200).send('Welcome 1!');
     });
 
     this.app.get(
